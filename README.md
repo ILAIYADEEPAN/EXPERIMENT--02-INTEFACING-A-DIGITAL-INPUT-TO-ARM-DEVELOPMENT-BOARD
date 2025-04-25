@@ -51,55 +51,49 @@ The full form of an ARM is an advanced reduced instruction set computer (RISC) m
 
 
 ## STM 32 CUBE PROGRAM :
-~~~
+```
 #include "main.h"
-#include "stdbool.h"
-bool button;
-void led_blink();
+#include<stdbool.h>
+void push_button();
+bool button_status;
 
-void SystemClock_Config(void);
-static void MX_GPIO_Init(void);
-int main(void)
-{
-  HAL_Init();
-  SystemClock_Config();
-  MX_GPIO_Init();
-    while (1)
+while (1)
   {
-    led_blink();
-     }
+	  push_button();
   }
-void led_blink()
-{
-	button=HAL_GPIO_ReadPin(GPIOA,GPIO_PIN_0);
-		  if(button==0)
+}
+  void push_button()
+	  {
+		  button_status=HAL_GPIO_ReadPin(GPIOA,GPIO_PIN_0);
+		  if(button_status==1)
 		  {
-			  HAL_GPIO_WritePin(GPIOA, GPIO_PIN_5, GPIO_PIN_SET);
-			  HAL_Delay(1000);
-			  HAL_GPIO_WritePin(GPIOA, GPIO_PIN_5, GPIO_PIN_RESET);
-			  HAL_Delay(1000);
+			  HAL_GPIO_WritePin(GPIOB,GPIO_PIN_0,GPIO_PIN_SET);
+			  HAL_Delay(500);
+			  HAL_GPIO_WritePin(GPIOB,GPIO_PIN_0,GPIO_PIN_RESET);
+			  HAL_Delay(500);
+
 		  }
 		  else
 		  {
-			  HAL_GPIO_WritePin(GPIOA, GPIO_PIN_5, GPIO_PIN_RESET);
-			  HAL_Delay(1000);
-		  }
-}
-~~~
-
+			  HAL_GPIO_WritePin(GPIOB,GPIO_PIN_0,GPIO_PIN_RESET);
+		  }
+	  }
+```
 
 
 ## Output  :
 
-![image](https://github.com/user-attachments/assets/7f90d7c1-00c2-49f9-9c50-c5dcc99828ce)
+## When LED Off:
+ ![EXP 2 OFF LED](https://github.com/user-attachments/assets/4bff0889-c5e5-447e-85ba-b479e72e58d6)
+
+
+## When LED On:
+![EXP 2 ON LED](https://github.com/user-attachments/assets/29be8716-de8a-4dfa-b20d-2ff0eb998a2c)
 
 
  
-## layout of the circuit :
-
-
- 
- ![image](https://github.com/user-attachments/assets/5b7edc32-7905-4862-a845-490f932188ff)
+## layout of the circuit 
+![Screenshot 2025-04-25 081723](https://github.com/user-attachments/assets/1ea983fe-5f46-4f62-baa4-c1455fc9ef5a)
 
  
 ## Result :
